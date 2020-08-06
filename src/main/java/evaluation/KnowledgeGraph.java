@@ -21,8 +21,6 @@ public class KnowledgeGraph {
     public Integer numberOfTriples;
     public List<Integer> numberOfEntityClustersTriples;
     public List<Integer> startIndicesOfClusters;
-
-    // triple will be drawn and removed
     public List<Triple> triples;
 
     KnowledgeGraph() {}
@@ -44,18 +42,19 @@ public class KnowledgeGraph {
             int clusterTriples = min + (int)(Math.random() * (max - min + 1));
 
             // the variance of accuracy
-            double var = (Math.random() - 0.5) * 5;
+            double var = (Math.random() - 0.5) * 5 / 100;
             double entityAccuracy = accuracy + var;
+            numberOfEntityClustersTriples.add(clusterTriples);
             startIndicesOfClusters.add(numberOfTriples);
 
             for (int j = 0; j < clusterTriples; j++) {
                 double cur = Math.random();
                 if (cur < entityAccuracy) {
-                    triples.add(new Triple(numberOfTriples, j, true));
+                    triples.add(new Triple(numberOfTriples, i, true));
                     correctTriples = correctTriples + 1;
                 }
                 else {
-                    triples.add(new Triple(numberOfTriples, j, false));
+                    triples.add(new Triple(numberOfTriples, i, false));
                 }
                 numberOfTriples = numberOfTriples + 1;
             }
@@ -65,10 +64,6 @@ public class KnowledgeGraph {
         // use numberOfEntityClusters instead
         startIndicesOfClusters.add(numberOfTriples);
         this.accuracy = (double)correctTriples / numberOfTriples;
-    }
-
-    public Integer getNumberOfSpecifiedEntityCluster(int id) {
-        return numberOfEntityClustersTriples.get(id);
     }
 }
 

@@ -13,9 +13,7 @@ public abstract class SampleCollector {
 
     SampleCollector() {}
 
-    public void setKg(KnowledgeGraph kg) {
-        this.kg = kg;
-    }
+    public abstract void setKg(KnowledgeGraph kg);
 
     // todo: throws exception when there is no more samples can be drawn
     public abstract List<Triple> sample(int n);
@@ -29,12 +27,17 @@ public abstract class SampleCollector {
 class SrsSampleCollector extends SampleCollector {
     private int lastOne;
 
-    SrsSampleCollector() {
+    SrsSampleCollector() {}
+
+    @Override
+    public void setKg(KnowledgeGraph kg) {
+        this.kg = kg;
         Collections.shuffle(kg.triples);
         lastOne = kg.triples.size() - 1;
     }
 
     // fixme: lastOne may be -1
+    @Override
     public List<Triple> sample(int n) {
         List<Triple> triples = new ArrayList<Triple>();
         for (int i = 0; i < n; i++) {
@@ -57,16 +60,21 @@ class TwcsSampleCollector extends SampleCollector {
     private int lastOne;
     private static final int M = 4;
 
-    TwcsSampleCollector() {
+    TwcsSampleCollector() {}
+
+    @Override
+    public void setKg(KnowledgeGraph kg) {
+        this.kg = kg;
         clusters = new ArrayList<Integer>();
         for (int i = 0; i < kg.numberOfEntityClusters; i++) {
             clusters.add(i);
         }
-        lastOne = clusters.size();
+        lastOne = clusters.size() - 1;
         Collections.shuffle(clusters);
     }
 
     // fixme: lastOne may be -1
+    @Override
     public List<Triple> sample(int n) {
         List<Triple> triples = new ArrayList<Triple>();
         for (int i = 0; i < n; i++) {
