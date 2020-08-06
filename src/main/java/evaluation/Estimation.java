@@ -7,15 +7,14 @@ import java.util.Random;
 /**
  * store the random variables (samples) of the estimator
  */
-public class Estimation {
+public abstract class Estimation {
 
-    private List<Double> samples;
-    private double[] normalDistributionData;
-    private double alpha;
+    protected List<Double> samples;
+    private double zx;
 
     Estimation(double alpha) {
-        this.alpha = alpha;
-        this.generateNormalDistribution();
+        samples = new ArrayList<Double>();
+        this.zx = this.computeZx(alpha/2);
     }
 
     public double getAccuracy() {
@@ -26,40 +25,59 @@ public class Estimation {
         return accuracy / samples.size();
     }
 
-//    public abstract double getVariance();
+    public abstract double getVariance();
 
     public double getMarginOfError() {
-        return 0;
+        return zx * Math.sqrt(getVariance() / samples.size());
+    }
+
+    public void addSamples(List<Double> samples) {
+        this.samples.addAll(samples);
     }
 
     /**
      * To compute z_{\alpha_2}, we generate data that follows normal distribution
      * given alpha, we can determine z_{\alpha_2} by computing the fraction of numbers surpass alpha
-     *
-     * todo: you can optimize the code by binary search to insert the number and count the number
      */
-    private void generateNormalDistribution() {
+    private double computeZx(double alpha) {
         int COUNT = 10000000;
-        normalDistributionData = new double[COUNT];
         Random r = new Random();
-        for (int i = 0; i < COUNT; i++) {
-            normalDistributionData[i] = r.nextGaussian();
-        }
-    }
-
-    /**
-     * compute z_{\alpha_2}
-     * @param alpha
-     * @return
-     */
-    private double zx(double alpha) {
         int numberBelowAlpha = 0;
-        for (int i = 0; i < normalDistributionData.length; i++) {
-            if (this.normalDistributionData[i] < alpha) {
+        for (int i = 0; i < COUNT; i++) {
+            if (r.nextGaussian() < alpha) {
                 numberBelowAlpha = numberBelowAlpha + 1;
             }
         }
-        return (double)numberBelowAlpha / normalDistributionData.length;
+        return (double)numberBelowAlpha / COUNT;
     }
 
+}
+
+class SrsEstimation extends Estimation {
+
+    SrsEstimation(double alpha) {
+        super(alpha);
+    }
+
+    @Override
+    public double getVariance() {
+        return this.getAccuracy() * (1 - this.getAccuracy());
+    }
+}
+
+class TwcsEstimation extends Estimation {
+
+    TwcsEstimation(double alpha) {
+        super(alpha);
+    }
+
+    @Override
+    public double getVariance() {
+        double acc = this.getAccuracy();
+        double var = 0.0;
+        for (double sample : samples) {
+            var = var + (sample - acc) * (sample - acc);
+        }
+        return var / (samples.size() - 1);
+    }
 }

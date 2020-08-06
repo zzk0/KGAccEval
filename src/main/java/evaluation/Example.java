@@ -13,20 +13,17 @@ import java.util.List;
 public class Example {
 
     public static void main(String[] args) {
-        long a = System.currentTimeMillis();
-        Estimation estimation = new Estimation(0.09);
-        System.out.println("\r<br> 执行耗时 : "+(System.currentTimeMillis()-a)/1000f+" 秒 ");
+        KnowledgeGraph kg = new KnowledgeGraph();
+        kg.init(0.53, 1000);
 
-        double[] vals = {0.00, 0.09, 0.22, 0.46, 0.85, 1.0, 2.2};
-        for (int i = 0; i < vals.length; i++) {
-            a = System.currentTimeMillis();
-            double zx = estimation.zx(vals[i]);
-            System.out.println(zx);
-            System.out.println("\r<br> 执行耗时 : "+(System.currentTimeMillis()-a)/1000f+" 秒 ");
-        }
+        Evaluation evaluation1 = new Evaluation(0.05, 0.95, Method.SRS);
+        double acc1 = evaluation1.evaluate(kg);
+        System.out.println(acc1);
 
-//        KnowledgeGraph kg = new KnowledgeGraph();
-//        kg.init(0.83, 1000);
+        Evaluation evaluation2 = new Evaluation(0.05, 0.95, Method.TWCS);
+        double acc2 = evaluation2.evaluate(kg);
+        System.out.println(acc2);
+
 //
 //        SampleCollector sc = new TwcsSampleCollector();
 //        sc.setKg(kg);

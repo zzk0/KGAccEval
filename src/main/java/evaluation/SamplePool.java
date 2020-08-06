@@ -34,4 +34,8 @@ public class SamplePool {
     public double getAccuracy() {
         return this.accuracy;
     }
+
+    public int drawCount() {
+        return this.evaluatedTriples.size();
+    }
 }
