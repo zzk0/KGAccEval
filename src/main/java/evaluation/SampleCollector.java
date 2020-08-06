@@ -1,8 +1,7 @@
 package evaluation;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * To sample a knowledge graph
@@ -25,24 +24,31 @@ public abstract class SampleCollector {
  * shuffle and remove the last n_s items every time
  */
 class SrsSampleCollector extends SampleCollector {
-    private int lastOne;
+    private Map<Integer, Integer> drawn;
 
-    SrsSampleCollector() {}
+    SrsSampleCollector() {
+        drawn = new HashMap<Integer, Integer>();
+    }
 
     @Override
     public void setKg(KnowledgeGraph kg) {
         this.kg = kg;
-        Collections.shuffle(kg.triples);
-        lastOne = kg.triples.size() - 1;
     }
 
     // fixme: lastOne may be -1
     @Override
     public List<Triple> sample(int n) {
         List<Triple> triples = new ArrayList<Triple>();
-        for (int i = 0; i < n; i++) {
-            triples.add(kg.triples.get(lastOne));
-            lastOne = lastOne - 1;
+        Random rand = new Random();
+        int min = 0, max = this.kg.triples.size() - 1;
+        int i = 0;
+        while (i < n) {
+            int randomNum = rand.nextInt((max - min) + 1) + min;
+            if (drawn.get(randomNum) == null) {
+                drawn.put(randomNum, 1);
+                triples.add(kg.triples.get(randomNum));
+                i = i + 1;
+            }
         }
         return triples;
     }
@@ -62,6 +68,7 @@ class TwcsSampleCollector extends SampleCollector {
 
     TwcsSampleCollector() {}
 
+    // fixme: not weighted random sampling
     @Override
     public void setKg(KnowledgeGraph kg) {
         this.kg = kg;

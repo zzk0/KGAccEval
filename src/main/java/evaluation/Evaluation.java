@@ -77,9 +77,15 @@ public class Evaluation {
                     break;
             }
         } while (this.estimation.getMarginOfError() > this.epsilon);
-
-        System.out.println(this.samplePool.drawCount());
         return this.estimation.getAccuracy();
+    }
+
+    public int evaluationCost() {
+        return this.samplePool.evaluationCost();
+    }
+
+    public int sampleNumber() {
+        return this.samplePool.sampleNumber();
     }
 
     /**

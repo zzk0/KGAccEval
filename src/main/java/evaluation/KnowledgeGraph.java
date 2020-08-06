@@ -38,7 +38,7 @@ public class KnowledgeGraph {
 
         for (int i = 0; i < clusters; i++) {
             // a cluster contains 1~30 triples
-            int min = 1, max = 30;
+            int min = 1, max = 18;
             int clusterTriples = min + (int)(Math.random() * (max - min + 1));
 
             // the variance of accuracy

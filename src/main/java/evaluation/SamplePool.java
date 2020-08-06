@@ -1,7 +1,9 @@
 package evaluation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * To store samples
@@ -35,7 +37,26 @@ public class SamplePool {
         return this.accuracy;
     }
 
-    public int drawCount() {
+    /**
+     * cost seconds
+     * @return
+     */
+    public int evaluationCost() {
+        int clusters = 0;
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for (Triple triple : evaluatedTriples) {
+            if (map.get(triple.entityId) == null) {
+                clusters = clusters + 1;
+                map.put(triple.entityId, 1);
+            }
+        }
+        return clusters * 45 + evaluatedTriples.size() * 25;
+    }
+
+    /**
+     * sample number
+     */
+    public int sampleNumber() {
         return this.evaluatedTriples.size();
     }
 }

@@ -61,7 +61,8 @@ class SrsEstimation extends Estimation {
 
     @Override
     public double getVariance() {
-        return this.getAccuracy() * (1 - this.getAccuracy());
+        double mean = this.getAccuracy();
+        return mean * (1 - mean);
     }
 }
 
