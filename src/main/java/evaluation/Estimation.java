@@ -14,7 +14,8 @@ public abstract class Estimation {
 
     Estimation(double alpha) {
         samples = new ArrayList<Double>();
-        this.zx = this.computeZx(alpha/2);
+//        this.zx = this.computeZx(alpha/2);
+        this.zx = 1.96;
     }
 
     public double getAccuracy() {
@@ -36,6 +37,8 @@ public abstract class Estimation {
     }
 
     /**
+     * fixme: wrong algorithm, wrong result!
+     *
      * To compute z_{\alpha_2}, we generate data that follows normal distribution
      * given alpha, we can determine z_{\alpha_2} by computing the fraction of numbers surpass alpha
      */

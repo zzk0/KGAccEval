@@ -1,7 +1,6 @@
 package evaluation;
 
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * To sample a knowledge graph
