@@ -34,7 +34,6 @@ class SrsSampleCollector extends SampleCollector {
         this.kg = kg;
     }
 
-    // fixme: lastOne may be -1
     @Override
     public List<Triple> sample(int n) {
         List<Triple> triples = new ArrayList<Triple>();
@@ -44,9 +43,9 @@ class SrsSampleCollector extends SampleCollector {
         while (i < n) {
             int randomNum = rand.nextInt((max - min) + 1) + min;
             if (drawn.get(randomNum) == null) {
+                i = i + 1;
                 drawn.put(randomNum, 1);
                 triples.add(kg.triples.get(randomNum));
-                i = i + 1;
             }
         }
         return triples;
@@ -64,36 +63,42 @@ class TwcsSampleCollector extends SampleCollector {
     private List<Integer> clusters;
     private int lastOne;
     private static final int M = 4;
+    private Map<Integer, Integer> drawn;
 
-    TwcsSampleCollector() {}
+    TwcsSampleCollector() {
+        drawn = new HashMap<Integer, Integer>();
+    }
 
-    // fixme: not weighted random sampling
     @Override
     public void setKg(KnowledgeGraph kg) {
         this.kg = kg;
-        clusters = new ArrayList<Integer>();
-        for (int i = 0; i < kg.numberOfEntityClusters; i++) {
-            clusters.add(i);
-        }
-        lastOne = clusters.size() - 1;
-        Collections.shuffle(clusters);
+        clusters = kg.startIndicesOfClusters;
+        lastOne = kg.triples.size() - 1;
     }
 
-    // fixme: lastOne may be -1
     @Override
     public List<Triple> sample(int n) {
         List<Triple> triples = new ArrayList<Triple>();
-        for (int i = 0; i < n; i++) {
-            int clusterId = clusters.get(lastOne);
-            lastOne = lastOne - 1;
-
-            List<Triple> clusterTriples = new ArrayList<Triple>();
-            for (int j = kg.startIndicesOfClusters.get(clusterId);
-                    j < kg.startIndicesOfClusters.get(clusterId + 1); j++) {
-                clusterTriples.add(kg.triples.get(j));
+        Random rand = new Random();
+        int i = 0;
+        while (i < n) {
+            int randomNum = rand.nextInt(lastOne + 1);
+            int clusterId = 0;
+            while (randomNum > clusters.get(clusterId)) {
+                clusterId = clusterId + 1;
             }
-            List<Triple> sampleTriples = SrsTriples(clusterTriples);
-            triples.addAll(sampleTriples);
+            clusterId = clusterId - 1;
+            if (drawn.get(clusterId) == null) {
+                i = i + 1;
+                drawn.put(clusterId, 1);
+                List<Triple> clusterTriples = new ArrayList<Triple>();
+                for (int j = kg.startIndicesOfClusters.get(clusterId);
+                     j < kg.startIndicesOfClusters.get(clusterId + 1); j++) {
+                    clusterTriples.add(kg.triples.get(j));
+                }
+                List<Triple> sampleTriples = SrsTriples(clusterTriples);
+                triples.addAll(sampleTriples);
+            }
         }
         return triples;
     }
