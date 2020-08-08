@@ -1,4 +1,4 @@
-# KGEval
+# KGAccEval
 
 The repository is currently under development.
 
@@ -6,8 +6,8 @@ The repostory is about Knowledge Graph Accuracy Evaluation, It's the implementat
 
 what to do next?
 
-- [] incremental evaluation
-- [] experiment on the real knowledge graph
+- [ ] incremental evaluation
+- [ ] experiment on the real knowledge graph
 
 
 # reference

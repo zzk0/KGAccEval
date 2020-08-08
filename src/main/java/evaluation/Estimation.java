@@ -14,8 +14,7 @@ public abstract class Estimation {
 
     Estimation(double alpha) {
         samples = new ArrayList<Double>();
-//        this.zx = this.computeZx(alpha/2);
-        this.zx = 1.96;
+        this.zx = this.computeZx((1 - alpha) / 2);
     }
 
     public double getAccuracy() {
@@ -37,21 +36,24 @@ public abstract class Estimation {
     }
 
     /**
-     * fixme: wrong algorithm, wrong result!
+     * Hastings formula, 0.0 < alpha < 0.5
      *
-     * To compute z_{\alpha_2}, we generate data that follows normal distribution
-     * given alpha, we can determine z_{\alpha_2} by computing the fraction of numbers surpass alpha
+     * for example, we want a confidence interval 0.95, so we call computeZx(0.025), 0.025 = (1 - 0.95) / 2
+     * we can get a value, we need to set it minus if we want to u_{0.025}
+     * however what we really want is u_{0.975} which is exactly the return value!
+     *
+     * reference: https://wenku.baidu.com/view/3ca32836581b6bd97f19ea8c.html?re=view
      */
     private double computeZx(double alpha) {
-        int COUNT = 10000000;
-        Random r = new Random();
-        int numberBelowAlpha = 0;
-        for (int i = 0; i < COUNT; i++) {
-            if (r.nextGaussian() < alpha) {
-                numberBelowAlpha = numberBelowAlpha + 1;
-            }
+        double[] c = {2.515517, 0.802853, 0.010328};
+        double[] d = {0.0, 1.432788, 0.189269, 0.001308};
+        double y = Math.sqrt(-2 * Math.log(alpha));
+        double cy = 0, dy = 0;
+        for (int i = 0; i < 2; i++) {
+            cy = cy + c[i] * Math.pow(y, i);
+            dy = dy + d[i + 1] * Math.pow(y, i+1);
         }
-        return (double)numberBelowAlpha / COUNT;
+        return y - cy / (dy + 1);
     }
 
 }

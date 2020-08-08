@@ -1,5 +1,6 @@
 package evaluation;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Example {
 
         double acc = kg.accuracy;
         double epsilon = 0.05;
-        double alpha = 0.95;
+        double alpha = 0.90;
 
         int time1 = 0, time2 = 0;
         int in1 = 0, in2 = 0;
