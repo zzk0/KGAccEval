@@ -9,10 +9,13 @@ import java.util.Map;
  * To store samples
  */
 public class SamplePool {
+    // this set is used for reservoir incremental evaluation
+    private List<List<Triple>> sampleClusterSet;
     private List<Triple> evaluatedTriples;
     private double accuracy;
 
     SamplePool() {
+        this.sampleClusterSet = new ArrayList<List<Triple>>();
         this.evaluatedTriples = new ArrayList<Triple>();
         this.accuracy = 0.0;
     }
@@ -23,6 +26,7 @@ public class SamplePool {
      * @param triples
      */
     public void add(List<Triple> triples) {
+        // add to evaluatedTriples
         evaluatedTriples.addAll(triples);
         int numberOfCorrect = 0;
         for (Triple triple : evaluatedTriples) {
@@ -31,6 +35,10 @@ public class SamplePool {
             }
         }
         this.accuracy = (double)numberOfCorrect / evaluatedTriples.size();
+
+        // add to sampleClustersSet
+        List<Triple> clone = new ArrayList<Triple>(triples);
+        sampleClusterSet.add(clone);
     }
 
     public double getAccuracy() {
@@ -58,5 +66,9 @@ public class SamplePool {
      */
     public int sampleNumber() {
         return this.evaluatedTriples.size();
+    }
+
+    public List<List<Triple>> getSampleClusterSet() {
+        return sampleClusterSet;
     }
 }

@@ -98,4 +98,16 @@ public class Evaluation {
     private boolean checkTriple(Triple triple) {
         return triple.correct;
     }
+
+    public List<List<Triple>> getSampleClusterSet() {
+        return samplePool.getSampleClusterSet();
+    }
+
+    public List<Double> getEstimationSamples() {
+        return estimation.getSamples();
+    }
+
+    public Method getMethod() {
+        return method;
+    }
 }

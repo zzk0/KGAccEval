@@ -35,6 +35,10 @@ public abstract class Estimation {
         this.samples.addAll(samples);
     }
 
+    public List<Double> getSamples() {
+        return samples;
+    }
+
     /**
      * Hastings formula, 0.0 < alpha < 0.5
      *

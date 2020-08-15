@@ -37,7 +37,7 @@ public class KnowledgeGraph {
         int correctTriples = 0;
 
         for (int i = 0; i < clusters; i++) {
-            // a cluster contains 1~30 triples
+            // a cluster contains 1~18 triples
             int min = 1, max = 18;
             int clusterTriples = min + (int)(Math.random() * (max - min + 1));
 
@@ -65,7 +65,26 @@ public class KnowledgeGraph {
         startIndicesOfClusters.add(numberOfTriples);
         this.accuracy = (double)correctTriples / numberOfTriples;
     }
+
+    // used to test incremental evaluation
+    public void addCluster(List<Triple> cluster) {
+        this.numberOfEntityClusters = this.numberOfEntityClusters + 1;
+        this.numberOfEntityClustersTriples.add(cluster.size());
+        this.triples.addAll(cluster);
+
+        // recalculate accuracy
+        int numberOfCorrect = 0;
+        for (Triple triple : this.triples) {
+            if (triple.correct) {
+                numberOfCorrect = numberOfCorrect + 1;
+            }
+        }
+        this.accuracy = (double)numberOfCorrect / this.triples.size();
+        this.numberOfTriples = this.triples.size();
+        this.startIndicesOfClusters.add(this.triples.size());
+    }
 }
+
 
 /**
  * knowledge graph Triple

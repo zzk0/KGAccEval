@@ -76,6 +76,7 @@ class TwcsSampleCollector extends SampleCollector {
         lastOne = kg.triples.size() - 1;
     }
 
+    // todo: the sampling performance maybe bad when the clusters number is small
     @Override
     public List<Triple> sample(int n) {
         List<Triple> triples = new ArrayList<Triple>();
@@ -84,7 +85,7 @@ class TwcsSampleCollector extends SampleCollector {
         while (i < n) {
             int randomNum = rand.nextInt(lastOne + 1);
             int clusterId = 0;
-            while (randomNum > clusters.get(clusterId)) {
+            while (randomNum >= clusters.get(clusterId)) {
                 clusterId = clusterId + 1;
             }
             clusterId = clusterId - 1;

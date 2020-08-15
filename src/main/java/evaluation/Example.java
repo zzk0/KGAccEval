@@ -17,7 +17,7 @@ public class Example {
         double suggestedAccuracy = 0.73;
 
         KnowledgeGraph kg = new KnowledgeGraph();
-        kg.init(suggestedAccuracy, 100000);
+        kg.init(suggestedAccuracy, 1000);
         System.out.println(kg.accuracy);
 
         double acc = kg.accuracy;
@@ -53,10 +53,10 @@ public class Example {
             }
         }
 
-        System.out.println("The probability of the predict accuracy for SRS in the CI: " + (double)in1 / total);
-        System.out.println("The probability of the predict accuracy for TWCS in the CI: " + (double)in2 / total);
-        System.out.println(time1 / 10);
-        System.out.println(time2 / 10);
+        System.out.println("SRS 准确率落在置信区间的概率为: " + (double)in1 / total);
+        System.out.println("TWCS 准确率落在置信区间的概率为: " + (double)in2 / total);
+        System.out.println("SRS 平均消耗的时间：" + time1 / total);
+        System.out.println("TWCS 平均消耗的时间：" + time2 / total);
 
 //        long a = System.currentTimeMillis();
 //        System.out.println("\r<br> 执行耗时 : "+(System.currentTimeMillis()-a)/1000f+" 秒 ");
