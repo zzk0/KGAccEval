@@ -26,7 +26,13 @@ public class SamplePool {
      * @param triples
      */
     public void add(List<Triple> triples) {
-        sampleClusterIdSet.add(triples.get(0).entityId);
+        int lastEntityId = -1;
+        for (Triple triple : triples) {
+            if (lastEntityId != triple.entityId) {
+                lastEntityId = triple.entityId;
+                sampleClusterIdSet.add(triple.entityId);
+            }
+        }
         evaluatedTriples.addAll(triples);
         int numberOfCorrect = 0;
         for (Triple triple : evaluatedTriples) {

@@ -35,16 +35,17 @@ class ReservoirIncrementalEvaluation {
     }
 
     public double evaluate(KnowledgeGraph update) {
+        boolean[] flags = new boolean[this.keys.size()];
         int smallestIndex = this.findSmallestKeyIndex();
         Random rand = new Random();
         for (int i = 0; i < update.numberOfEntityClustersTriples.size(); i++) {
             int size = update.numberOfEntityClustersTriples.get(i);
             double key = Math.pow(rand.nextDouble(), 1.0 / size);
-            if (keys.get(smallestIndex) > key) {
+            if (key > keys.get(smallestIndex)) {
+                flags[smallestIndex] = true;
                 keys.set(smallestIndex, key);
                 List<Triple> triples = new ArrayList<Triple>();
-                for (int j = update.startIndicesOfClusters.get(i);
-                        j < update.startIndicesOfClusters.get(i + 1); j++) {
+                for (int j = update.startIndicesOfClusters.get(i); j < update.startIndicesOfClusters.get(i+1); j++) {
                     triples.add(update.triples.get(j));
                 }
                 List<Triple> srsSamples = this.srsTriples(triples);

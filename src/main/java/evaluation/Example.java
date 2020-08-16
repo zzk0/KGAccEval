@@ -61,15 +61,17 @@ public class Example {
         // base evaluation
         Evaluation evaluation = new Evaluation(epsilon, alpha, Method.TWCS);
         acc = evaluation.evaluate(kg);
+        System.out.println(acc);
 
         // update evaluation
         KnowledgeGraph update = new KnowledgeGraph();
-        update.init(suggestedAccuracy, 500);
+        update.init(0.3, 200);
         System.out.println(update.accuracy);
 
         ReservoirIncrementalEvaluation incrementalEvaluation = new ReservoirIncrementalEvaluation();
         incrementalEvaluation.init(evaluation, kg);
-
+        double newAccuracy = incrementalEvaluation.evaluate(update);
+        System.out.println(newAccuracy);
 
 //        long a = System.currentTimeMillis();
 //        System.out.println("\r<br> 执行耗时 : "+(System.currentTimeMillis()-a)/1000f+" 秒 ");
