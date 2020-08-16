@@ -99,8 +99,8 @@ public class Evaluation {
         return triple.correct;
     }
 
-    public List<List<Triple>> getSampleClusterSet() {
-        return samplePool.getSampleClusterSet();
+    public List<Integer> getSampleClusterIdSet() {
+        return samplePool.getSampleClusterIdSet();
     }
 
     public List<Double> getEstimationSamples() {

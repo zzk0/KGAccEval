@@ -58,6 +58,19 @@ public class Example {
         System.out.println("SRS 平均消耗的时间：" + time1 / total);
         System.out.println("TWCS 平均消耗的时间：" + time2 / total);
 
+        // base evaluation
+        Evaluation evaluation = new Evaluation(epsilon, alpha, Method.TWCS);
+        acc = evaluation.evaluate(kg);
+
+        // update evaluation
+        KnowledgeGraph update = new KnowledgeGraph();
+        update.init(suggestedAccuracy, 500);
+        System.out.println(update.accuracy);
+
+        ReservoirIncrementalEvaluation incrementalEvaluation = new ReservoirIncrementalEvaluation();
+        incrementalEvaluation.init(evaluation, kg);
+
+
 //        long a = System.currentTimeMillis();
 //        System.out.println("\r<br> 执行耗时 : "+(System.currentTimeMillis()-a)/1000f+" 秒 ");
     }

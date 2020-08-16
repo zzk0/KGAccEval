@@ -97,14 +97,14 @@ class TwcsSampleCollector extends SampleCollector {
                      j < kg.startIndicesOfClusters.get(clusterId + 1); j++) {
                     clusterTriples.add(kg.triples.get(j));
                 }
-                List<Triple> sampleTriples = SrsTriples(clusterTriples);
+                List<Triple> sampleTriples = srsTriples(clusterTriples);
                 triples.addAll(sampleTriples);
             }
         }
         return triples;
     }
 
-    private List<Triple> SrsTriples(List<Triple> triples) {
+    private List<Triple> srsTriples(List<Triple> triples) {
         List<Triple> samples = new ArrayList<Triple>();
         Collections.shuffle(triples);
         for (int i = 0; i < M && i < triples.size(); i++) {

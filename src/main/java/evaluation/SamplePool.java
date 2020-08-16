@@ -10,12 +10,12 @@ import java.util.Map;
  */
 public class SamplePool {
     // this set is used for reservoir incremental evaluation
-    private List<List<Triple>> sampleClusterSet;
+    private List<Integer> sampleClusterIdSet;
     private List<Triple> evaluatedTriples;
     private double accuracy;
 
     SamplePool() {
-        this.sampleClusterSet = new ArrayList<List<Triple>>();
+        this.sampleClusterIdSet = new ArrayList<Integer>();
         this.evaluatedTriples = new ArrayList<Triple>();
         this.accuracy = 0.0;
     }
@@ -26,7 +26,7 @@ public class SamplePool {
      * @param triples
      */
     public void add(List<Triple> triples) {
-        // add to evaluatedTriples
+        sampleClusterIdSet.add(triples.get(0).entityId);
         evaluatedTriples.addAll(triples);
         int numberOfCorrect = 0;
         for (Triple triple : evaluatedTriples) {
@@ -35,10 +35,6 @@ public class SamplePool {
             }
         }
         this.accuracy = (double)numberOfCorrect / evaluatedTriples.size();
-
-        // add to sampleClustersSet
-        List<Triple> clone = new ArrayList<Triple>(triples);
-        sampleClusterSet.add(clone);
     }
 
     public double getAccuracy() {
@@ -68,7 +64,7 @@ public class SamplePool {
         return this.evaluatedTriples.size();
     }
 
-    public List<List<Triple>> getSampleClusterSet() {
-        return sampleClusterSet;
+    public List<Integer> getSampleClusterIdSet() {
+        return sampleClusterIdSet;
     }
 }
