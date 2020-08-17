@@ -18,23 +18,12 @@ class ReservoirIncrementalEvaluation {
             return false;
         }
         samples = new ArrayList<Double>(evaluation.getEstimationSamples());
-        keys = new ArrayList<Double>();
-        Random rand = new Random();
-
-        List<Integer> sampleClusterIdSet = evaluation.getSampleClusterIdSet();
-        List<Integer> sampleClusterSize = new ArrayList<Integer>();
-        for (Integer sampleClusterId : sampleClusterIdSet) {
-            sampleClusterSize.add(base.numberOfEntityClustersTriples.get(sampleClusterId));
-        }
-        for (int i = 0; i < sampleClusterSize.size(); i++) {
-            Integer size = sampleClusterSize.get(i);
-            double key = Math.pow(rand.nextDouble(), 1.0 / size);
-            keys.add(key);
-        }
+        keys = evaluation.getTwcsSampleKeys();
         return true;
     }
 
     public double evaluate(KnowledgeGraph update) {
+        // flags are used to determine which keys are substitute
         boolean[] flags = new boolean[this.keys.size()];
         int smallestIndex = this.findSmallestKeyIndex();
         Random rand = new Random();
@@ -88,6 +77,7 @@ class ReservoirIncrementalEvaluation {
         return samples;
     }
 }
+
 
 class StratifiedIncrementalEvaluation {
 

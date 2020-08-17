@@ -60,46 +60,58 @@ class SrsSampleCollector extends SampleCollector {
  * when cluster removed, shuffle cluster's triples, sampling m=4 triples (suggested 3~5 in the paper)
  */
 class TwcsSampleCollector extends SampleCollector {
+
+    class Tuple {
+        double key;
+        int index;
+
+        Tuple(double key, int index) {
+            this.key = key;
+            this.index = index;
+        }
+    }
+
     private List<Integer> clusters;
     private int lastOne;
     private static final int M = 4;
-    private Map<Integer, Integer> drawn;
+    private PriorityQueue<Tuple> keys;
+    private List<Double> sampleKeys;
 
-    TwcsSampleCollector() {
-        drawn = new HashMap<Integer, Integer>();
-    }
+    TwcsSampleCollector() {}
 
     @Override
     public void setKg(KnowledgeGraph kg) {
         this.kg = kg;
         clusters = kg.startIndicesOfClusters;
         lastOne = kg.triples.size() - 1;
+        keys = new PriorityQueue<Tuple>(100, new Comparator<Tuple>() {
+            public int compare(Tuple o1, Tuple o2) {
+                return -Double.compare(o1.key, o2.key);
+            }
+        });
+        sampleKeys = new ArrayList<Double>();
+        Random rand = new Random();
+        int i = 0;
+        for (Integer size : kg.numberOfEntityClustersTriples) {
+            keys.add(new Tuple(Math.pow(rand.nextDouble(), 1.0 / size), i));
+            i = i + 1;
+        }
     }
 
-    // todo: the sampling performance maybe bad when the clusters number is small
     @Override
     public List<Triple> sample(int n) {
         List<Triple> triples = new ArrayList<Triple>();
-        Random rand = new Random();
-        int i = 0;
-        while (i < n) {
-            int randomNum = rand.nextInt(lastOne + 1);
-            int clusterId = 0;
-            while (randomNum >= clusters.get(clusterId)) {
-                clusterId = clusterId + 1;
+        for (int i = 0; i < n && this.keys.peek() != null; i++) {
+            Tuple tuple = this.keys.poll();
+            int clusterId = tuple.index;
+            sampleKeys.add(tuple.key);
+            List<Triple> clusterTriples = new ArrayList<Triple>();
+            for (int j = kg.startIndicesOfClusters.get(clusterId);
+                 j < kg.startIndicesOfClusters.get(clusterId + 1); j++) {
+                clusterTriples.add(kg.triples.get(j));
             }
-            clusterId = clusterId - 1;
-            if (drawn.get(clusterId) == null) {
-                i = i + 1;
-                drawn.put(clusterId, 1);
-                List<Triple> clusterTriples = new ArrayList<Triple>();
-                for (int j = kg.startIndicesOfClusters.get(clusterId);
-                     j < kg.startIndicesOfClusters.get(clusterId + 1); j++) {
-                    clusterTriples.add(kg.triples.get(j));
-                }
-                List<Triple> sampleTriples = srsTriples(clusterTriples);
-                triples.addAll(sampleTriples);
-            }
+            List<Triple> sampleTriples = srsTriples(clusterTriples);
+            triples.addAll(sampleTriples);
         }
         return triples;
     }
@@ -111,5 +123,9 @@ class TwcsSampleCollector extends SampleCollector {
             samples.add(triples.get(i));
         }
         return samples;
+    }
+
+    public List<Double> getSampleKeys() {
+        return sampleKeys;
     }
 }

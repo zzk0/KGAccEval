@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="deb533ea-abf1-465f-9f9a-df2cc6947d7b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/evaluation/Evaluation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/evaluation/Evaluation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/evaluation/Example.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/evaluation/Example.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/evaluation/IncrementalEvaluation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/evaluation/IncrementalEvaluation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/evaluation/SamplePool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/evaluation/SamplePool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/evaluation/SampleCollector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/evaluation/SampleCollector.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,12 +32,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/evaluation/SamplePool.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="557">
+            <state relative-caret-position="504">
               <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1816#1817#0" expanded="true" />
-                <element signature="e#1857#1858#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,12 +62,41 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/evaluation/SampleCollector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="87" column="40" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="40" />
+            <state relative-caret-position="2573">
+              <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
               <folding>
                 <element signature="e#678#679#0" expanded="true" />
                 <element signature="e#706#707#0" expanded="true" />
+                <element signature="e#2074#2222#0" expanded="true" />
+                <element signature="e#2221#2222#0" expanded="true" />
+                <element signature="e#2406#2414#0" expanded="true" />
+                <element signature="e#3620#3621#0" expanded="true" />
+                <element signature="e#3653#3654#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/PriorityQueue.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-9492">
+              <caret line="45" column="2" lean-forward="true" selection-start-line="45" selection-start-column="2" selection-end-line="45" selection-end-column="2" />
+              <folding>
+                <element signature="e#4277#4278#0" expanded="true" />
+                <element signature="e#4329#4330#0" expanded="true" />
+                <element signature="e#12127#12128#0" expanded="true" />
+                <element signature="e#12158#12159#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/Comparator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="856">
+              <caret line="148" column="7" lean-forward="true" selection-start-line="148" selection-start-column="7" selection-end-line="148" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -77,8 +104,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/evaluation/Evaluation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="74" column="47" selection-start-line="74" selection-start-column="40" selection-end-line="74" selection-end-column="47" />
+            <state relative-caret-position="746">
+              <caret line="121" lean-forward="true" selection-start-line="121" selection-end-line="121" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3038#3039#0" expanded="true" />
@@ -95,13 +122,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/evaluation/IncrementalEvaluation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1268">
-              <caret line="88" column="5" lean-forward="true" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
+            <state relative-caret-position="499">
+              <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#818#827#0" expanded="true" />
-                <element signature="e#1745#1753#0" expanded="true" />
-                <element signature="e#3058#3066#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -110,8 +134,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/evaluation/Example.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="67" column="26" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
+            <state relative-caret-position="452">
+              <caret line="65" column="28" lean-forward="true" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -148,11 +172,11 @@
         <option value="$PROJECT_DIR$/src/main/java/evaluation/Method.java" />
         <option value="$PROJECT_DIR$/src/main/java/evaluation/KnowledgeGraph.java" />
         <option value="$PROJECT_DIR$/src/main/java/evaluation/Estimation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/evaluation/Evaluation.java" />
-        <option value="$PROJECT_DIR$/src/main/java/evaluation/SampleCollector.java" />
         <option value="$PROJECT_DIR$/src/main/java/evaluation/SamplePool.java" />
-        <option value="$PROJECT_DIR$/src/main/java/evaluation/IncrementalEvaluation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/evaluation/SampleCollector.java" />
+        <option value="$PROJECT_DIR$/src/main/java/evaluation/Evaluation.java" />
         <option value="$PROJECT_DIR$/src/main/java/evaluation/Example.java" />
+        <option value="$PROJECT_DIR$/src/main/java/evaluation/IncrementalEvaluation.java" />
       </list>
     </option>
   </component>
@@ -167,7 +191,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="CatdeaLogs" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -232,8 +257,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="CatdeaLogs" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -323,6 +347,7 @@
       <workItem from="1597541345860" duration="6275000" />
       <workItem from="1597587753039" duration="77000" />
       <workItem from="1597587861097" duration="3427000" />
+      <workItem from="1597623291892" duration="4048000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1596506437299</created>
@@ -335,7 +360,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65123000" />
+    <option name="totallyTimeSpent" value="69171000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -350,7 +375,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21695095" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21908316" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -359,8 +384,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.30260304" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.31453362" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.3362256" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.46637744" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
@@ -400,19 +425,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/evaluation/IncrementalEvaluation.java</url>
-          <line>33</line>
+          <line>21</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/evaluation/IncrementalEvaluation.java</url>
-          <line>64</line>
-          <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/evaluation/IncrementalEvaluation.java</url>
-          <line>38</line>
+          <line>27</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
@@ -423,11 +442,18 @@
         <watch expression="this.triples" language="JAVA" />
         <watch expression="this.getVariance()" language="JAVA" />
         <watch expression="update.triples.get(j).entityId" language="JAVA" />
+        <watch expression="keys" language="JAVA" />
+        <watch expression="keys.peek()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>keys.peek()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>update.triples.get(j).entityId</expression-string>
         <language-id>JAVA</language-id>
@@ -530,18 +556,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/evaluation/Evaluation.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/evaluation/SamplePool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="74" column="47" selection-start-line="74" selection-start-column="40" selection-end-line="74" selection-end-column="47" />
+        <state relative-caret-position="504">
+          <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3038#3039#0" expanded="true" />
-            <element signature="e#3093#3094#0" expanded="true" />
-            <element signature="e#3126#3127#0" expanded="true" />
-            <element signature="e#3179#3180#0" expanded="true" />
-            <element signature="e#3535#3536#0" expanded="true" />
-            <element signature="e#3592#3593#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -562,48 +582,81 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/evaluation/SamplePool.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/Double.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="557">
-          <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+        <state relative-caret-position="298">
+          <caret line="998" column="22" selection-start-line="998" selection-start-column="22" selection-end-line="998" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/PriorityQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9492">
+          <caret line="45" column="2" lean-forward="true" selection-start-line="45" selection-start-column="2" selection-end-line="45" selection-end-column="2" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1816#1817#0" expanded="true" />
-            <element signature="e#1857#1858#0" expanded="true" />
+            <element signature="e#4277#4278#0" expanded="true" />
+            <element signature="e#4329#4330#0" expanded="true" />
+            <element signature="e#12127#12128#0" expanded="true" />
+            <element signature="e#12158#12159#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/evaluation/SampleCollector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="87" column="40" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="40" />
+        <state relative-caret-position="2573">
+          <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
           <folding>
             <element signature="e#678#679#0" expanded="true" />
             <element signature="e#706#707#0" expanded="true" />
+            <element signature="e#2074#2222#0" expanded="true" />
+            <element signature="e#2221#2222#0" expanded="true" />
+            <element signature="e#2406#2414#0" expanded="true" />
+            <element signature="e#3620#3621#0" expanded="true" />
+            <element signature="e#3653#3654#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/evaluation/Example.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="67" column="26" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
+        <state relative-caret-position="452">
+          <caret line="65" column="28" lean-forward="true" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/evaluation/IncrementalEvaluation.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/Comparator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1268">
-          <caret line="88" column="5" lean-forward="true" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
+        <state relative-caret-position="856">
+          <caret line="148" column="7" lean-forward="true" selection-start-line="148" selection-start-column="7" selection-end-line="148" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/evaluation/Evaluation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="746">
+          <caret line="121" lean-forward="true" selection-start-line="121" selection-end-line="121" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#818#827#0" expanded="true" />
-            <element signature="e#1745#1753#0" expanded="true" />
-            <element signature="e#3058#3066#0" expanded="true" />
+            <element signature="e#3038#3039#0" expanded="true" />
+            <element signature="e#3093#3094#0" expanded="true" />
+            <element signature="e#3126#3127#0" expanded="true" />
+            <element signature="e#3179#3180#0" expanded="true" />
+            <element signature="e#3535#3536#0" expanded="true" />
+            <element signature="e#3592#3593#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/evaluation/IncrementalEvaluation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

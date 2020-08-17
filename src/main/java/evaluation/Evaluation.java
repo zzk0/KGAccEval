@@ -110,4 +110,12 @@ public class Evaluation {
     public Method getMethod() {
         return method;
     }
+
+    public List<Double> getTwcsSampleKeys() {
+        if (this.method != Method.TWCS) {
+            System.out.println("[Warning] you are only allowed to call with TWCS evaluation");
+            return null;
+        }
+        return ((TwcsSampleCollector)this.sampleCollector).getSampleKeys();
+    }
 }

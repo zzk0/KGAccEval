@@ -21,7 +21,7 @@ public class Example {
         System.out.println(kg.accuracy);
 
         double acc = kg.accuracy;
-        double epsilon = 0.05;
+        double epsilon = 0.03;
         double alpha = 0.90;
 
         int time1 = 0, time2 = 0;
@@ -65,7 +65,7 @@ public class Example {
 
         // update evaluation
         KnowledgeGraph update = new KnowledgeGraph();
-        update.init(0.3, 200);
+        update.init(0.27, 100);
         System.out.println(update.accuracy);
 
         ReservoirIncrementalEvaluation incrementalEvaluation = new ReservoirIncrementalEvaluation();
