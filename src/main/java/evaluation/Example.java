@@ -63,15 +63,42 @@ public class Example {
         acc = evaluation.evaluate(kg);
         System.out.println(acc);
 
-        // update evaluation
-        KnowledgeGraph update = new KnowledgeGraph();
-        update.init(0.27, 100);
-        System.out.println(update.accuracy);
-
         ReservoirIncrementalEvaluation incrementalEvaluation = new ReservoirIncrementalEvaluation();
         incrementalEvaluation.init(evaluation, kg);
-        double newAccuracy = incrementalEvaluation.evaluate(update);
-        System.out.println(newAccuracy);
+
+        StratifiedIncrementalEvaluation incrementalEvaluation1 = new StratifiedIncrementalEvaluation();
+        incrementalEvaluation1.init(evaluation, kg);
+
+        double[] accs = {0.27, 0.8, 0.2, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.9};
+        for (int i = 0; i < accs.length; i++) {
+            // update evaluation
+            KnowledgeGraph update = new KnowledgeGraph();
+            update.init(accs[i], 1000);
+
+            System.out.println("---------------------------------------");
+
+            double newAccuracy = incrementalEvaluation.evaluate(update);
+            System.out.println("Reservoir Incremental Evaluation: " + newAccuracy);
+
+            newAccuracy = incrementalEvaluation1.evaluate(update);
+            System.out.println("Stratified Incremental Evaluation: " + newAccuracy);
+        }
+
+        for (int i = 0; i < 200; i++) {
+            // update evaluation
+            KnowledgeGraph update = new KnowledgeGraph();
+            update.init(0.9, 1000);
+
+            System.out.println("---------------------------------------");
+
+            double newAccuracy = incrementalEvaluation.evaluate(update);
+            System.out.println("Reservoir Incremental Evaluation: " + newAccuracy);
+
+            newAccuracy = incrementalEvaluation1.evaluate(update);
+            System.out.println("Stratified Incremental Evaluation: " + newAccuracy);
+        }
+
+
 
 //        long a = System.currentTimeMillis();
 //        System.out.println("\r<br> 执行耗时 : "+(System.currentTimeMillis()-a)/1000f+" 秒 ");

@@ -19,6 +19,7 @@ public class Evaluation {
 
     Evaluation(double epsilon, double alpha, Method method) {
         this.epsilon = epsilon;
+        this.alpha = alpha;
         this.method = method;
         this.samplePool = new SamplePool();
         switch (method) {
@@ -117,5 +118,17 @@ public class Evaluation {
             return null;
         }
         return ((TwcsSampleCollector)this.sampleCollector).getSampleKeys();
+    }
+
+    public double getAlpha() {
+        return alpha;
+    }
+
+    public double getEpsilon() {
+        return epsilon;
+    }
+
+    public double getAccuracy() {
+        return this.estimation.getAccuracy();
     }
 }

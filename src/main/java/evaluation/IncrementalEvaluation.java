@@ -22,6 +22,7 @@ class ReservoirIncrementalEvaluation {
         return true;
     }
 
+    // fixme: you need to calculate MoE to determine whether stop or not, so hard...
     public double evaluate(KnowledgeGraph update) {
         // flags are used to determine which keys are substitute
         boolean[] flags = new boolean[this.keys.size()];
@@ -84,19 +85,39 @@ class StratifiedIncrementalEvaluation {
     private int baseKnowledgeGraphSize;
     private List<Integer> updateSizes;
     private double epsilon;
+    private double alpha;
 
     // the zero index element is base knowledge graph
-    private List<Double> arrucacy;
-    private List<Double> variation;
+    private List<Double> accuracy;
+    // private List<Double> variation;
 
     StratifiedIncrementalEvaluation() {}
 
-    public boolean init(Evaluation evaluation, double epsilon) {
-        this.epsilon = epsilon;
+    public boolean init(Evaluation evaluation, KnowledgeGraph base) {
+        this.baseKnowledgeGraphSize = base.numberOfTriples;
+        this.updateSizes = new ArrayList<Integer>();
+        this.epsilon = evaluation.getEpsilon();
+        this.alpha = evaluation.getAlpha();
+        this.accuracy = new ArrayList<Double>();
+
+        this.accuracy.add(evaluation.getAccuracy());
         return false;
     }
 
-    public double evaluate(KnowledgeGraph kg) {
-        return 0.0;
+    public double evaluate(KnowledgeGraph update) {
+        this.updateSizes.add(update.numberOfTriples);
+        Evaluation evaluation = new Evaluation(this.epsilon, this.alpha, Method.TWCS);
+        accuracy.add(evaluation.evaluate(update));
+
+        int totalSize = baseKnowledgeGraphSize;
+        for (Integer size : updateSizes) {
+            totalSize = totalSize + size;
+        }
+        double stratifiedAccuracy = (double)baseKnowledgeGraphSize / totalSize * accuracy.get(0);
+        for (int i = 0; i < updateSizes.size(); i++) {
+            stratifiedAccuracy = stratifiedAccuracy + (double)updateSizes.get(i) / totalSize * accuracy.get(i + 1);
+        }
+
+        return stratifiedAccuracy;
     }
 }
