@@ -43,8 +43,6 @@ public abstract class Estimation {
      * Hastings formula, 0.0 < alpha < 0.5
      *
      * for example, we want a confidence interval 0.95, so we call computeZx(0.025), 0.025 = (1 - 0.95) / 2
-     * we can get a value, we need to set it minus if we want to u_{0.025}
-     * however what we really want is u_{0.975} which is exactly the return value!
      *
      * reference: https://wenku.baidu.com/view/3ca32836581b6bd97f19ea8c.html?re=view
      */

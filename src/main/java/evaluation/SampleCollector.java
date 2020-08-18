@@ -20,7 +20,6 @@ public abstract class SampleCollector {
 /**
  * Simple Random Sampling
  *
- * shuffle and remove the last n_s items every time
  */
 class SrsSampleCollector extends SampleCollector {
     private List<Integer> allTripleIds;
@@ -54,8 +53,6 @@ class SrsSampleCollector extends SampleCollector {
 /**
  * Two-Stage Weighted Cluster Sampling
  *
- * create cluster ids and shuffle, remove last n clusters every time
- * when cluster removed, shuffle cluster's triples, sampling m=4 triples (suggested 3~5 in the paper)
  */
 class TwcsSampleCollector extends SampleCollector {
 

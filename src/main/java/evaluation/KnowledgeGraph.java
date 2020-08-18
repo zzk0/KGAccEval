@@ -30,7 +30,6 @@ public class KnowledgeGraph {
         numberOfEntityClusters = clusters;
         numberOfTriples = 0;
 
-        // we use LinkedList here because List.remove() is called frequently
         numberOfEntityClustersTriples = new LinkedList<Integer>();
         startIndicesOfClusters = new ArrayList<Integer>();
         triples = new LinkedList<Triple>();
