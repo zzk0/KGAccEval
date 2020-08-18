@@ -1,13 +1,11 @@
 # KGAccEval
 
-The repository is currently under development.
+The repository is about Knowledge Graph Accuracy Evaluation[1]
 
-The repostory is about Knowledge Graph Accuracy Evaluation, It's the implementation of the paper[1]
+The knowledge graph data was randomly generated for experiment purpose.
 
-what to do next?
-
-- [ ] incremental evaluation
-- [ ] experiment on the real knowledge graph
+- [x] static evaluation: SRS, TWCS
+- [x] incremental evaluation: Reservoir, Stratified
 
 
 # reference
