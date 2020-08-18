@@ -23,30 +23,28 @@ public abstract class SampleCollector {
  * shuffle and remove the last n_s items every time
  */
 class SrsSampleCollector extends SampleCollector {
-    private Map<Integer, Integer> drawn;
+    private List<Integer> allTripleIds;
+    private int index;
 
-    SrsSampleCollector() {
-        drawn = new HashMap<Integer, Integer>();
-    }
+    SrsSampleCollector() {}
 
     @Override
     public void setKg(KnowledgeGraph kg) {
         this.kg = kg;
+        allTripleIds = new ArrayList<Integer>();
+        index = 0;
+        for (int i = 0; i < kg.numberOfTriples; i++) {
+            allTripleIds.add(i);
+        }
+        Collections.shuffle(allTripleIds);
     }
 
     @Override
     public List<Triple> sample(int n) {
         List<Triple> triples = new ArrayList<Triple>();
-        Random rand = new Random();
-        int min = 0, max = this.kg.triples.size() - 1;
-        int i = 0;
-        while (i < n) {
-            int randomNum = rand.nextInt((max - min) + 1) + min;
-            if (drawn.get(randomNum) == null) {
-                i = i + 1;
-                drawn.put(randomNum, 1);
-                triples.add(kg.triples.get(randomNum));
-            }
+        for (int i = 0; i < n && index < allTripleIds.size(); i++) {
+            triples.add(kg.triples.get(allTripleIds.get(index)));
+            index = index + 1;
         }
         return triples;
     }

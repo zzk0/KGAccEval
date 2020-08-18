@@ -84,10 +84,10 @@ public class Example {
             System.out.println("Stratified Incremental Evaluation: " + newAccuracy);
         }
 
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 100; i++) {
             // update evaluation
             KnowledgeGraph update = new KnowledgeGraph();
-            update.init(0.9, 1000);
+            update.init(0.9, 100);
 
             System.out.println("---------------------------------------");
 
@@ -97,8 +97,6 @@ public class Example {
             newAccuracy = incrementalEvaluation1.evaluate(update);
             System.out.println("Stratified Incremental Evaluation: " + newAccuracy);
         }
-
-
 
 //        long a = System.currentTimeMillis();
 //        System.out.println("\r<br> 执行耗时 : "+(System.currentTimeMillis()-a)/1000f+" 秒 ");

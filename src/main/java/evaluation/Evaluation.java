@@ -36,6 +36,7 @@ public class Evaluation {
 
     public double evaluate(KnowledgeGraph kg) {
         this.sampleCollector.setKg(kg);
+        boolean remainTriples = true;
         do {
             List<Triple> triples;
             List<Double> samples =  new ArrayList<Double>();
@@ -44,6 +45,10 @@ public class Evaluation {
             switch (method) {
                 case SRS:
                     triples = this.sampleCollector.sample(30);
+                    if (triples.size() == 0) {
+                        remainTriples = false;
+                        break;
+                    }
                     for (Triple triple : triples) {
                         triple.correct = checkTriple(triple);
                         samples.add(triple.correct ? 1.0 : 0.0);
@@ -56,6 +61,10 @@ public class Evaluation {
                     triples = this.sampleCollector.sample(10);
                     int numberOfCorrect = 0;
                     int numberOfCluster = 0;
+                    if (triples.size() == 0) {
+                        remainTriples = false;
+                        break;
+                    }
                     int lastClusterId = triples.get(0).entityId;
                     for (Triple triple : triples) {
                         if (triple.entityId != lastClusterId) {
@@ -77,7 +86,7 @@ public class Evaluation {
                     this.estimation.addSamples(samples);
                     break;
             }
-        } while (this.estimation.getMarginOfError() > this.epsilon);
+        } while (this.estimation.getMarginOfError() > this.epsilon && remainTriples);
         return this.estimation.getAccuracy();
     }
 
